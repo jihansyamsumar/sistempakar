@@ -53,9 +53,9 @@ include "config.php";
       if($_SESSION['role'] =="Dokter"){
     ?>
 
-      <li class="nav-item active">
+      <!-- <li class="nav-item active">
         <a class="nav-link" href="?page=users">Users</a>
-      </li>
+      </li> -->
       <li class="nav-item active">
         <a class="nav-link " href="?page=aturan">Basis Aturan</a>
       </li>
