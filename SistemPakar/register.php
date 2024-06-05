@@ -114,8 +114,8 @@ if(isset($_POST['simpan'])){
                             <label for="">Role</label>
                             <select class="form-control chosen" data-placeholder="Pilih Role" name="role">
                                 <option value=""></option>
-                                <option value="Dokter">Dokter</option>
-                                <option value="Admin">Admin</option>
+                                <!-- <option value="Dokter">Dokter</option>
+                                <option value="Admin">Admin</option> -->
                                 <option value="Pasien">Pasien</option>
                             </select>
                         </div>
