@@ -101,7 +101,6 @@ if(isset($_POST['simpan'])){
             <form action="" method="POST">
                 <div class="card border-dark">
                     <div class="card">
-                    <div class="card-header bg-primary text-white border-dark"><strong>Data Users</strong></div>
                     <div class="card-body">
                         <div class="form-group">
                             <label for="">Username</label>

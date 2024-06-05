@@ -5,7 +5,7 @@
     <table class="table table-bordered" id="myTable">
     <thead>
       <tr>
-        <th width="80px">No.</th>
+        <!-- <th width="80px">No.</th> -->
         <th width="100px">Kode Gejala</th>
         <th width="700px">Nama Gejala</th>
         <th width="100px"></th>
@@ -29,7 +29,7 @@
         while($row = $result->fetch_assoc()) {
     ?>
         <tr>
-            <td><?php echo $no++; ?></td>
+            <!-- <td><?php echo $no++; ?></td> -->
             <td><?php echo $row['kdgejala']; ?></td>
             <td><?php echo $row['nmgejala']; ?></td>
             <td align="center">
