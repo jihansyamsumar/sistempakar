@@ -1,3 +1,9 @@
+<style>
+  .card{
+    margin-top:30px;
+  }
+</style>
+
 <div class="card">
   <div class="card-header bg-primary text-white border-dark"><strong>Data Hasil Konsultasi</strong></div>
   <div class="card-body">
