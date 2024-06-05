@@ -96,7 +96,8 @@ if(isset($_POST['simpan'])){
 </section>
   <div class="container">
     <div class="row">
-        <div class="col-sm-12">
+      <div class="col-lg-4 offset-lg-4">
+          <h1>Silakan Registrasi</h1>
             <form action="" method="POST">
                 <div class="card border-dark">
                     <div class="card">
