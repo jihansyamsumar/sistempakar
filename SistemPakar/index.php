@@ -50,23 +50,12 @@ include "config.php";
     
     <!-- setting hak akses -->
     <?php 
-      if($_SESSION['role'] =="Dokter"){
+      if($_SESSION['role'] =="Admin"){
     ?>
 
       <li class="nav-item active">
         <a class="nav-link" href="?page=users">Users</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link " href="?page=aturan">Basis Aturan</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link " href="?page=konsultasiadm">Konsultasi</a>
-      </li>
-
-    <?php
-      }elseif($_SESSION['role'] =="Admin"){
-    ?>
-
       <li class="nav-item active">
         <a class="nav-link" href="?page=gejala">Gejala</a>
       </li>
@@ -81,10 +70,18 @@ include "config.php";
       </li>
 
     <?php
+      }elseif($_SESSION['role'] =="Pasien"){
+    ?>
+    
+      <li class="nav-item active">
+        <a class="nav-link " href="?page=konsultasi">Konsultasi</a>
+      </li>
+
+    <?php
       }else{
     ?>
       <li class="nav-item active">
-        <a class="nav-link " href="?page=konsultasi">Konsultasi</a>
+        <a class="nav-link " href="#"></a>
       </li>
     
     <?php
