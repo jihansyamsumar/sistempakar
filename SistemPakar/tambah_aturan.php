@@ -47,7 +47,7 @@ if(isset($_POST['simpan'])){
         $i=0;
         while($i < $jumlah){
             $idgejalane=$idgejala[$i];
-            $sql = "INSERT INTO detail_basis_aturan VALUES ($idaturan,'$idgejalane')";
+            $sql = "INSERT INTO detail_basis_aturan VALUES ('$idaturan','$idgejalane')";
             mysqli_query($conn,$sql);
             $i++;
         }

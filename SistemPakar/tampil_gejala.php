@@ -1,4 +1,10 @@
-<div class="card">
+<style>
+    .card{
+        margin-top:30px;
+    }
+</style>
+
+<div class="card border-dark">
   <div class="card-header bg-primary text-white border-dark"><strong>Data Gejala</strong></div>
   <div class="card-body">
     <a class="btn btn-primary mb-2" href="?page=gejala&action=tambah">Tambah</a>

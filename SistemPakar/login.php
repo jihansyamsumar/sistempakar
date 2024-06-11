@@ -44,18 +44,18 @@ $conn->close();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    <!-- bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-
     <style>
-        h1{
+        body {
+            background-image: linear-gradient(to right, #007bff, #fff);
+        }
+        h1 {
             padding-bottom: 20px;
             padding-left: 50px;
         }
-        .card{
+        .card {
             border-radius: 25px;
         }
-        .btn{
+        .btn {
             border-radius: 15px;
         }
     </style>
@@ -77,33 +77,31 @@ if(isset($_GET['msg'])){
 ?>
 
 <section id="nav-bar">
-
-        <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
-            <a class="navbar-brand" href="#"><img src="image/logo.png" alt="logo"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" 
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
-                    aria-expanded="false" aria-label="Toggle navigation">
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ml-auto">
+    <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+        <a class="navbar-brand" href="#"><img src="image/logo.png" alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                aria-expanded="false" aria-label="Toggle navigation">
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link" href="index.html">Home</a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="about.php">About</a>
+                    <a class="nav-link" href="about.php">About</a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="register.php">Register</a>
+                    <a class="nav-link" href="register.php">Register</a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="login.php">Login</a>
+                    <a class="nav-link" href="login.php">Login</a>
                 </li>
-                
-              </ul>
-            </div>
-          </nav>
-    </section>
+            </ul>
+        </div>
+    </nav>
+</section>
 
 <div class="container" style="margin-top:50px">
     <div class="row">
@@ -120,10 +118,6 @@ if(isset($_GET['msg'])){
                             <label for="">Password</label>
                             <input type="password" class="form-control" name="pass" autocomplete="off" placeholder="Masukkan password" required>
                         </div>
-                        <!-- <div class="remember-forgot">
-                            <label><input type="checkbox" name="remember"> Remember me</label>
-                            <a href="#">Forgot Password</a>
-                        </div> -->
                         <input type="submit" class="btn btn-primary" name="submit" value="Login">
                         <a class="btn btn-danger" href="index.html">Batal</a>
                     </div>
@@ -133,9 +127,5 @@ if(isset($_GET['msg'])){
     </div>
 </div>
 
-<!-- jquery -->
-<script src="assets/js/jquery-3.7.0.min.js"></script>
-<!-- bootstrap js -->
-<script src="assets/js/bootstrap.min.js"></script>
 </body>
 </html>

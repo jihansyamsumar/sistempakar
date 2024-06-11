@@ -94,7 +94,7 @@ if(isset($_POST['proses'])){
     <div class="col-sm-12">
         <form action="" method="POST" name="Form" onsubmit="return validasiForm()">
             <div class="card border-dark">
-                <div class="card">
+                <!-- <div class="card"> -->
                 <div class="card-header bg-primary text-white border-dark"><strong>Konsultasi Penyakit</strong></div>
                 <div class="card-body">
                     <div class="form-group">

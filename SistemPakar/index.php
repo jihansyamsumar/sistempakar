@@ -76,6 +76,9 @@ include "config.php";
       <li class="nav-item active">
         <a class="nav-link " href="?page=konsultasi">Konsultasi</a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link " href="rekam_medis.php">Hasil Konsultasi</a>
+      </li>
 
     <?php
       }else{

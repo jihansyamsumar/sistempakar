@@ -4,18 +4,19 @@ require_once "config.php";
 if(isset($_POST['simpan'])){
 
     // mengambil data dari form
-    $username=$_POST['username'];
-    $pass=md5($_POST['pass']);
-    $role=$_POST['role'];
-	
-	//proses simpan
-    $sql = "INSERT INTO users VALUES (Null,'$username','$pass','$role')";
-    if ($conn->query($sql) === TRUE) {
-        header("Location:?page=users");
-    }
+    $username = $_POST['username'];
+    $pass = md5($_POST['pass']);
+    $role = $_POST['role'];
     
+    //proses simpan
+    $sql = "INSERT INTO users VALUES (Null, '$username', '$pass', '$role')";
+    if ($conn->query($sql) === TRUE) {
+        header("Location: register.php?status=success");
+        exit();
+    }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,10 +29,12 @@ if(isset($_POST['simpan'])){
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <title>Register</title>
   <style>
         body {
             font-family: sans-serif;
+            background-image: linear-gradient(to right, #007bff, #fff);
         }
         .container {
             margin-top: 50px; /* Naikkan form lebih dekat ke bagian atas */
@@ -53,14 +56,11 @@ if(isset($_POST['simpan'])){
         .form-group label {
             font-weight: 600;
         }
-        h1{
+        h1 {
             padding-bottom: 20px;
             padding-left: 15px;
         }
-        .card{
-            border-radius: 25px;
-        }
-        .btn{
+        .btn {
             border-radius: 15px;
         }
     </style>
@@ -115,17 +115,28 @@ if(isset($_POST['simpan'])){
                             <select class="form-control chosen" data-placeholder="Pilih Role" name="role">
                                 <option value=""></option>
                                 <!-- <option value="Dokter">Dokter</option> -->
-                                <option value="Admin">Admin</option>
+                                <!-- <option value="Admin">Admin</option> -->
                                 <option value="Pasien">Pasien</option>
                             </select>
                         </div>
                         <input class="btn btn-primary" type="submit" name="simpan" value="Simpan">
-                        <a class="btn btn-danger" href="?page=users">Batal</a>
+                        <a class="btn btn-danger" href="index.html">Batal</a>
                     </div>
                 </div>
             </form>
         </div>
     </div>
   </div>
+
+<script>
+    // Check if the URL contains the parameter 'status=success'
+    if (window.location.search.includes('status=success')) {
+        Swal.fire({
+            title: 'Registrasi Sukses',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    }
+</script>
 </body>
 </html>
