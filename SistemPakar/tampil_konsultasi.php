@@ -3,7 +3,7 @@ require_once "config.php";
 
 date_default_timezone_set("Asia/Jakarta");
 
-if(isset($_POST['proses'])){
+if(isset($_POST['Proses'])){
 
     // mengambil data dari form
     $nmpasien=$_POST['nmpasien'];
@@ -152,7 +152,7 @@ if(isset($_POST['proses'])){
                         </table>
                     </div>
 
-                    <input class="btn btn-primary" type="submit" name="proses" value="Proses">
+                    <input class="btn btn-primary" type="submit" name="Proses" value="Proses">
                 </div>
             </div>
         </form>
