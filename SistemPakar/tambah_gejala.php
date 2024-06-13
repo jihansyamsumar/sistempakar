@@ -6,15 +6,17 @@ if(isset($_POST['simpan'])){
     // mengambil data dari form
     $kdgejala=$_POST['kdgejala'];
     $nmgejala=$_POST['nmgejala'];
-	
+
 	//proses simpan
-    $sql = "INSERT INTO gejala VALUES (Null,'$kdgejala,'$nmgejala')";
+    $sql = "INSERT INTO gejala VALUES (Null,'$kdgejala','$nmgejala')";
     if ($conn->query($sql) === TRUE) {
         header("Location:?page=gejala");
     }
     
 }
 ?>
+
+
 
 <style>
     .card{

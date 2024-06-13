@@ -5,7 +5,7 @@
 </style>
 
 <div class="card">
-  <div class="card-header bg-primary text-white border-dark"><strong>Data Hasil Konsultasi</strong></div>
+  <div class="card-header bg-primary text-white border-dark"><strong>Data Hasil Konsultasi Min</strong></div>
   <div class="card-body">
     <table class="table table-bordered" id="myTable">
     <thead>
