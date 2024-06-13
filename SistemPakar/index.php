@@ -100,7 +100,7 @@ include "config.php";
 <!-- cek status login -->
 <?php 
     if($_SESSION['status']!="y"){
-        header("Location:index.html");
+        header("Location:home.php");
     }
 ?>
 

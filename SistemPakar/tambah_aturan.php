@@ -34,7 +34,7 @@ if(isset($_POST['simpan'])){
 
         // mengambil idgejala,kdgejala
         $idgejala=$_POST['idgejala'];
-        $kdgejala=$_POST['kdgejala'];
+        // $kdgejala=$_POST['kdgejala'];
 
         // proses mengambil data aturan
         $sql = "SELECT * FROM basis_aturan ORDER BY idaturan DESC";
