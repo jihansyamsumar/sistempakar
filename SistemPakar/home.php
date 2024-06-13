@@ -23,7 +23,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home</a>
+                  <a class="nav-link" href="home.php">Home</a>
                 </li>
                 <li class="nav-item active">
                   <a class="nav-link" href="about.php">About</a>
@@ -45,7 +45,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-5">
-            <p class="promo-title">Sistem Pakar Diagnosa Penyakit Pneumonia</p>
+            <p class="promo-title">Sistem Pakar Diagnosa Penyakit Pneumonia ???</p>
             <p>Sistem pakar diagnosa penyakit pneumonia adalah sistem yang dirancang untuk membantu dalam proses diagnosa pneumonia
               dalam hal mendiagnosa gejala awal penyakit pneumonia terhadap anak kecil.</p>
           </div>
