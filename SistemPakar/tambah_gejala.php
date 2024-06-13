@@ -16,8 +16,6 @@ if(isset($_POST['simpan'])){
 }
 ?>
 
-
-
 <style>
     .card{
         margin-top:30px;
