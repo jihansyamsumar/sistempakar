@@ -13,12 +13,18 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 ?>
 
+<style>
+    .card{
+        margin-top:30px;
+    }
+</style>
+
 <!-- tampilan halaman detail -->
 <div class="row">
     <div class="col-sm-12">
         <form action="" method="POST">
             <div class="card border-dark">
-                <div class="card">
+                <!-- <div class="card"> -->
                     <div class="card-header bg-primary text-white border-dark"><strong>Detail Halaman Basis Aturan</strong></div>
                     <div class="card-body">
 
@@ -77,7 +83,7 @@ $row = $result->fetch_assoc();
 
                         <a class="btn btn-danger" href="?page=aturan">Kembali</a>
                     </div>
-                </div>
+                <!-- </div> -->
             </div>
         </form>
     </div>

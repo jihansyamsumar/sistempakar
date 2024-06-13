@@ -56,11 +56,17 @@ if(isset($_POST['simpan'])){
 }
 ?>
 
+<style>
+    .card{
+        margin-top:30px;
+    }
+</style>
+
 <div class="row">
     <div class="col-sm-12">
         <form action="" method="POST" name="Form" onsubmit="return validasiForm()">
             <div class="card border-dark">
-                <div class="card">
+                <!-- <div class="card"> -->
                 <div class="card-header bg-primary text-white border-dark"><strong>Tambah Data Basis Aturan</strong></div>
                 <div class="card-body">
 
@@ -138,7 +144,7 @@ if(isset($_POST['simpan'])){
                     <input class="btn btn-primary" type="submit" name="simpan" value="Simpan">
                     <a class="btn btn-danger" href="?page=aturan">Batal</a>
                 </div>
-            </div>
+            <!-- </div> -->
         </form>
     </div>
 </div>

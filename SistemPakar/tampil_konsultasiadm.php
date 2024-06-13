@@ -4,8 +4,13 @@
   }
 </style>
 
+<<<<<<< HEAD
+<div class="card border-dark"">
+  <div class="card-header bg-primary text-white border-dark"><strong>Data Hasil Konsultasi</strong></div>
+=======
 <div class="card">
   <div class="card-header bg-primary text-white border-dark"><strong>Data Hasil Konsultasi Min</strong></div>
+>>>>>>> 488396c4aba5f6b4fefbcf7b56a99594ab2bd590
   <div class="card-body">
     <table class="table table-bordered" id="myTable">
     <thead>
