@@ -89,6 +89,11 @@ if(isset($_POST['proses'])){
 
 ?>
 
+<style>
+  .card{
+    margin-top:30px;
+  }
+</style>
 
 <div class="row">
     <div class="col-sm-12">

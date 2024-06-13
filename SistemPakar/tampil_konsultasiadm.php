@@ -4,7 +4,7 @@
   }
 </style>
 
-<div class="card">
+<div class="card border-dark"">
   <div class="card-header bg-primary text-white border-dark"><strong>Data Hasil Konsultasi</strong></div>
   <div class="card-body">
     <table class="table table-bordered" id="myTable">

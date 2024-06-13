@@ -10,7 +10,7 @@ if(isset($_POST['simpan'])){
     $solusi=$_POST['solusi'];
 	
 	//proses simpan
-    $sql = "INSERT INTO penyakit VALUES (Null,'$nmpenyakit','$kdpenyakit','$ket','$solusi')";
+    $sql = "INSERT INTO penyakit VALUES (Null,'$kdpenyakit','$nmpenyakit','$ket','$solusi')";
     if ($conn->query($sql) === TRUE) {
         header("Location:?page=penyakit");
     }

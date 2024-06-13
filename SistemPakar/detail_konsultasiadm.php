@@ -10,12 +10,17 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 ?>
 
+<style>
+  .card{
+    margin-top:30px;
+  }
+</style>
+
 <!-- tampilan halaman hasil konsultasi -->
 <div class="row">
     <div class="col-sm-12">
         <form action="" method="POST">
             <div class="card border-dark">
-                <div class="card">
                     <div class="card-header bg-primary text-white border-dark"><strong>Hasil Konsultasi</strong></div>
                     <div class="card-body">
 
@@ -113,7 +118,6 @@ $row = $result->fetch_assoc();
                         </table>
                         <a class="btn btn-danger" href="?page=konsultasiadm">Kembali</a>
                     </div>
-                </div>
             </div>
         </form>
     </div>
