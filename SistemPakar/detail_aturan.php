@@ -62,10 +62,19 @@ $row = $result->fetch_assoc();
                             }
 
                             $no=1;
-                            $sql = "SELECT detail_basis_aturan.idaturan,detail_basis_aturan.idgejala,detail_basis_aturan.kdgejala,
-                                            gejala.kdgejala,gejala.nmgejala 
-                                    FROM detail_basis_aturan INNER JOIN gejala 
-                                    ON detail_basis_aturan.idgejala=gejala.idgejala WHERE detail_basis_aturan.idaturan='$idaturan'";
+                            // $sql = "SELECT detail_basis_aturan.idaturan,detail_basis_aturan.idgejala,detail_basis_aturan.kdgejala,
+                            //                 gejala.kdgejala,gejala.nmgejala 
+                            //         FROM detail_basis_aturan INNER JOIN gejala 
+                            //         ON detail_basis_aturan.idgejala=gejala.idgejala WHERE detail_basis_aturan.idaturan='$idaturan'";
+
+                            // baru (salah diquery)
+                            // $sql = "SELECT detail_basis_aturan.idaturan,detail_basis_aturan.idgejala, gejala.nmgejala 
+                            // FROM detail_basis_aturan INNER JOIN gejala 
+                            // ON detail_basis_aturan.idgejala=gejala.idgejala 
+                            // WHERE detail_basis_aturan.idaturan='$idaturan'";
+
+                            // baru2
+                            $sql = "SELECT * FROM gejala where idgejala = 1";
                             $result = $conn->query($sql);
                             while($row = $result->fetch_assoc()) {
                         ?>
