@@ -24,7 +24,6 @@ $row = $result->fetch_assoc();
     <div class="col-sm-12">
         <form action="" method="POST">
             <div class="card border-dark">
-                <!-- <div class="card"> -->
                     <div class="card-header bg-primary text-white border-dark"><strong>Detail Halaman Basis Aturan</strong></div>
                     <div class="card-body">
 
@@ -62,10 +61,10 @@ $row = $result->fetch_assoc();
                             }
 
                             $no=1;
-                            $sql = "SELECT detail_basis_aturan.idaturan,detail_basis_aturan.idgejala,detail_basis_aturan.kdgejala,
-                                            gejala.kdgejala,gejala.nmgejala 
-                                    FROM detail_basis_aturan INNER JOIN gejala 
-                                    ON detail_basis_aturan.idgejala=gejala.idgejala WHERE detail_basis_aturan.idaturan='$idaturan'";
+                            // $sql = "SELECT detail_basis_aturan.idaturan,detail_basis_aturan.idgejala,gejala.nmgejala 
+                            //         FROM detail_basis_aturan INNER JOIN gejala 
+                            //         ON detail_basis_aturan.idgejala=gejala.idgejala WHERE detail_basis_aturan.idaturan='$idaturan'";
+
                             $result = $conn->query($sql);
                             while($row = $result->fetch_assoc()) {
                         ?>
@@ -83,7 +82,6 @@ $row = $result->fetch_assoc();
 
                         <a class="btn btn-danger" href="?page=aturan">Kembali</a>
                     </div>
-                <!-- </div> -->
             </div>
         </form>
     </div>
