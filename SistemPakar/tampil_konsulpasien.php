@@ -30,7 +30,7 @@
         }
 
         $no=1;
-        $sql = "SELECT * FROM konsultasi ORDER BY tanggal DESC";
+        $sql = "SELECT * FROM konsultasi ORDER BY tanggal DESC LIMIT 15";
         $result = $conn->query($sql);
         while($row = $result->fetch_assoc()) {
     ?>
