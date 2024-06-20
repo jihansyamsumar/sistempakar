@@ -62,6 +62,7 @@ if(isset($_POST['simpan'])){
         }
         .btn {
             border-radius: 15px;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -113,10 +114,10 @@ if(isset($_POST['simpan'])){
                         <div class="form-group">
                             <label for="">Role</label>
                             <select class="form-control chosen" data-placeholder="Pilih Role" name="role">
-                                <option value=""></option>
-                                <!-- <option value="Dokter">Dokter</option> -->
-                                <!-- <option value="Admin">Admin</option> -->
-                                <option value="Pasien">Pasien</option>
+                                <!-- <option value=""></option>
+                                <option value="Dokter">Dokter</option>
+                                <option value="Admin">Admin</option> -->
+                                <option value="Pasien" disabled selected>Pasien</option>
                             </select>
                         </div>
                         <input class="btn btn-primary" type="submit" name="simpan" value="Simpan">
