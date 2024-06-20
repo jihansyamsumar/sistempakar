@@ -16,7 +16,7 @@ $row = $result->fetch_assoc();
         <form action="" method="POST">
             <div class="card border-dark">
                 <div class="card">
-                    <div class="card-header bg-primary text-white border-dark"><strong>Hasil Konsultasi</strong></div>
+                    <div class="card-header bg-primary text-white border-dark"><strong>Hasil Konsultasi Pasien</strong></div>
                     <div class="card-body">
 
                         <div class="form-group">
@@ -111,7 +111,7 @@ $row = $result->fetch_assoc();
                         ?>
                         </tbody>
                         </table>
-                        <a class="btn btn-danger" href="?page=konsultasiadm">Kembali</a>
+                        <a class="btn btn-danger" href="?page=konsultasipasien">Kembali</a>
                     </div>
                 </div>
             </div>

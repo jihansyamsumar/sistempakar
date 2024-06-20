@@ -77,7 +77,7 @@ include "config.php";
         <a class="nav-link " href="?page=konsultasi">Konsultasi</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link " href="rekam_medis.php">Hasil Konsultasi</a>
+        <a class="nav-link " href="?page=konsultasipasien">Hasil Konsultasi</a>
       </li>
 
     <?php
@@ -161,6 +161,14 @@ include "config.php";
       }else{
           include "detail_konsultasiadm.php";
       }
+
+    }elseif ($page=="konsultasipasien"){
+      if ($action==""){
+          include "tampil_konsulpasien.php";
+      }else{
+          include "detail_konsultasi.php";
+      }
+    
     }elseif ($page=="users"){
       if ($action==""){
           include "tampil_users.php";

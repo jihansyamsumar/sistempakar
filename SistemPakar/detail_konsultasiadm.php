@@ -21,7 +21,7 @@ $row = $result->fetch_assoc();
     <div class="col-sm-12">
         <form action="" method="POST">
             <div class="card border-dark">
-                    <div class="card-header bg-primary text-white border-dark"><strong>Hasil Konsultasi</strong></div>
+                    <div class="card-header bg-primary text-white border-dark"><strong>Hasil Konsultasi Admin</strong></div>
                     <div class="card-body">
 
                         <div class="form-group">
@@ -54,10 +54,10 @@ $row = $result->fetch_assoc();
                             }
 
                             $no=1;
-                            // $sql = "SELECT detail_konsultasi.idkonsultasi,detail_konsultasi.idgejala,
-                            //                 gejala.kdgejala,gejala.nmgejala
-                            //         FROM detail_konsultasi INNER JOIN gejala 
-                            //         ON detail_konsultasi.idgejala=gejala.idgejala WHERE idkonsultasi='$idkonsultasi'";
+                            $sql = "SELECT detail_konsultasi.idkonsultasi,detail_konsultasi.idgejala,
+                                            gejala.kdgejala,gejala.nmgejala
+                                    FROM detail_konsultasi INNER JOIN gejala 
+                                    ON detail_konsultasi.idgejala=gejala.idgejala WHERE idkonsultasi='$idkonsultasi'";
                             $result = $conn->query($sql);
                             while($row = $result->fetch_assoc()) {
                         ?>
@@ -95,11 +95,11 @@ $row = $result->fetch_assoc();
                             }
 
                             $no=1;
-                            // $sql = "SELECT detail_penyakit.idkonsultasi,detail_penyakit.kdpenyakit,detail_penyakit.idpenyakit,
-                            //                 penyakit.kdpenyakit,penyakit.nmpenyakit,penyakit.solusi,detail_penyakit.persentase
-                            //         FROM detail_penyakit INNER JOIN penyakit 
-                            //         ON detail_penyakit.idpenyakit=penyakit.idpenyakit WHERE idkonsultasi='$idkonsultasi'
-                            //         ORDER BY persentase DESC";
+                            $sql = "SELECT detail_penyakit.idkonsultasi,detail_penyakit.kdpenyakit,detail_penyakit. idpenyakit,
+                                    penyakit.kdpenyakit,penyakit.nmpenyakit,penyakit.solusi,detail_penyakit.persentase
+                                    FROM detail_penyakit INNER JOIN penyakit 
+                                    ON detail_penyakit.idpenyakit=penyakit.idpenyakit WHERE idkonsultasi='$idkonsultasi'
+                                    ORDER BY persentase DESC";
                             $result = $conn->query($sql);
                             while($row = $result->fetch_assoc()) {
                         ?>
