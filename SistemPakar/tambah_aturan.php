@@ -49,13 +49,12 @@ if(isset($_POST['simpan'])){
         $i=0;
         while($i < $jumlah){
             $idgejalane=$idgejala[$i];
-<<<<<<< HEAD
+
             $sql = "INSERT INTO detail_basis_aturan VALUES ('$idaturan', '$kdpenyakit','$idgejalane')";
-=======
             // $sql = "INSERT INTO detail_basis_aturan VALUES ('$idaturan','$idgejalane')";
+            
             // baru
             $sql = "INSERT INTO detail_basis_aturan VALUES ('idaturan','idgejala','kdgejala')";
->>>>>>> cac7806b54ee9fc7874a3792c8581ab96cd53bf7
             mysqli_query($conn,$sql);
             $i++;
         }

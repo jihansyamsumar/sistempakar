@@ -111,16 +111,16 @@ if(isset($_POST['simpan'])){
                             <input type="password" class="form-control" name="pass" maxlength="10" required>
                         </div>
                         <div class="form-group">
-                            <label for="">Role</label>
-                            <select class="form-control chosen" data-placeholder="Pilih Role" name="role">
-                                <option value=""></option>
+                            <!-- <label for="">Role</label> -->
+                            <!-- <select class="form-control chosen" data-placeholder="Pilih Role" name="role"> -->
+                                <!-- <option value=""></option> -->
                                 <!-- <option value="Dokter">Dokter</option> -->
                                 <!-- <option value="Admin">Admin</option> -->
-                                <option value="Pasien">Pasien</option>
-                            </select>
+                                <!-- <option value="Pasien">Pasien</option> -->
+                            <!-- </select> -->
                         </div>
                         <input class="btn btn-primary" type="submit" name="simpan" value="Simpan">
-                        <a class="btn btn-danger" href="index.html">Batal</a>
+                        <a class="btn btn-danger" href="home.php">Batal</a>
                     </div>
                 </div>
             </form>

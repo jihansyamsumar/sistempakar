@@ -119,7 +119,7 @@ if(isset($_GET['msg'])){
                             <input type="password" class="form-control" name="pass" autocomplete="off" placeholder="Masukkan password" required>
                         </div>
                         <input type="submit" class="btn btn-primary" name="submit" value="Login">
-                        <a class="btn btn-danger" href="index.html">Batal</a>
+                        <a class="btn btn-danger" href="home.php">Batal</a>
                     </div>
                 </div>
             </form>
