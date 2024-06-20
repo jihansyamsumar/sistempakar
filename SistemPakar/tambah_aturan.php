@@ -8,10 +8,20 @@ if(isset($_POST['simpan'])){
     $nmpenyakit=$_POST['nmpenyakit'];
 	
     // validasi nama penyakit
-    $sql = "SELECT basis_aturan.idaturan,basis_aturan.idpenyakit,basis_aturan.kdpenyakit
-                   penyakit.kdpenyakit,penyakit.nmpenyakit 
-                FROM basis_aturan INNER JOIN penyakit 
-                ON basis_aturan.idpenyakit=penyakit.idpenyakit WHERE kdpenyakit='$kdpenyakit' OR nmpenyakit='$nmpenyakit'";
+    // $sql = "SELECT basis_aturan.idaturan,basis_aturan.idpenyakit,basis_aturan.kdpenyakit
+    //                penyakit.kdpenyakit,penyakit.nmpenyakit 
+    //             FROM basis_aturan INNER JOIN penyakit 
+    //             ON basis_aturan.idpenyakit=penyakit.idpenyakit WHERE kdpenyakit='$kdpenyakit' OR nmpenyakit='$nmpenyakit'";
+
+    // baru
+    $sql = "SELECT basis_aturan.idaturan, basis_aturan.idpenyakit, basis_aturan.kdpenyakit, 
+                penyakit.kdpenyakit, penyakit.nmpenyakit 
+                FROM basis_aturan 
+                INNER JOIN penyakit 
+                ON basis_aturan.idpenyakit = penyakit.idpenyakit 
+                WHERE penyakit.kdpenyakit = '$kdpenyakit' OR penyakit.nmpenyakit = '$nmpenyakit'";
+
+    
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         ?>
@@ -49,13 +59,11 @@ if(isset($_POST['simpan'])){
         $i=0;
         while($i < $jumlah){
             $idgejalane=$idgejala[$i];
-<<<<<<< HEAD
+
             $sql = "INSERT INTO detail_basis_aturan VALUES ('$idaturan', '$kdpenyakit','$idgejalane')";
-=======
             // $sql = "INSERT INTO detail_basis_aturan VALUES ('$idaturan','$idgejalane')";
             // baru
             $sql = "INSERT INTO detail_basis_aturan VALUES ('idaturan','idgejala','kdgejala')";
->>>>>>> cac7806b54ee9fc7874a3792c8581ab96cd53bf7
             mysqli_query($conn,$sql);
             $i++;
         }

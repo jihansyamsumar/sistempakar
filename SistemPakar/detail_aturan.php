@@ -1,88 +1,75 @@
-<!-- proses menampilkan data basis aturan -->
-<?php 
+<?php
 require_once "config.php";
 
-// mengambil id dari parameter
-$idaturan=$_GET['id'];
+// Mengambil id dari parameter
+$idaturan = $_GET['id'];
 
-$sql = "SELECT basis_aturan.idaturan,basis_aturan.idpenyakit,basis_aturan.kdpenyakit,
-                penyakit.kdpenyakit,penyakit.nmpenyakit,penyakit.keterangan
-        FROM basis_aturan INNER JOIN penyakit ON basis_aturan.idpenyakit=penyakit.idpenyakit 
-        WHERE basis_aturan.idaturan='$idaturan'";
-$result = $conn->query($sql);
+// Mempersiapkan SQL untuk mendapatkan detail penyakit
+$sql = "SELECT basis_aturan.idaturan, basis_aturan.idpenyakit, basis_aturan.kdpenyakit,
+                penyakit.kdpenyakit, penyakit.nmpenyakit, penyakit.keterangan
+        FROM basis_aturan
+        INNER JOIN penyakit ON basis_aturan.idpenyakit = penyakit.idpenyakit 
+        WHERE basis_aturan.idaturan = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $idaturan);
+$stmt->execute();
+$result = $stmt->get_result();
 $row = $result->fetch_assoc();
 ?>
 
 <style>
-    .card{
-        margin-top:30px;
+    .card {
+        margin-top: 30px;
     }
 </style>
 
-<!-- tampilan halaman detail -->
+<!-- Tampilan halaman detail -->
 <div class="row">
     <div class="col-sm-12">
         <form action="" method="POST">
             <div class="card border-dark">
-                    <div class="card-header bg-primary text-white border-dark"><strong>Detail Halaman Basis Aturan</strong></div>
-                    <div class="card-body">
+                <div class="card-header bg-primary text-white border-dark">
+                    <strong>Detail Halaman Basis Aturan</strong>
+                </div>
+                <div class="card-body">
 
-                        <div class="form-group">
-                            <label for="">Kode Penyakit</label>
-                            <input type="text" class="form-control" value="<?php echo $row['kdpenyakit'] ?>" name="kd" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Nama Penyakit</label>
-                            <input type="text" class="form-control" value="<?php echo $row['nmpenyakit'] ?>" name="nama" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Keterangan</label>
-                            <input type="text" class="form-control" value="<?php echo $row['keterangan'] ?>" name="ket" readonly>
-                        </div>
+                    <div class="form-group">
+                        <label for="">Kode Penyakit</label>
+                        <input type="text" class="form-control" value="<?php echo $row['kdpenyakit']; ?>" name="kd" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nama Penyakit</label>
+                        <input type="text" class="form-control" value="<?php echo $row['nmpenyakit']; ?>" name="nama" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Keterangan</label>
+                        <input type="text" class="form-control" value="<?php echo $row['keterangan']; ?>" name="ket" readonly>
+                    </div>
 
-                        <!-- tabel gejala-gejala -->
-                        <label for="">Gejala-Gejala Penyakit :</label>
-                        <table class="table table-bordered">
+                    <!-- Tabel gejala-gejala -->
+                    <label for="">Gejala-Gejala Penyakit :</label>
+                    <table class="table table-bordered">
                         <thead>
-                        <tr>
-                            <th width="40px">No</th>
-                            <th width="100px">Kode Gejala</th>
-                            <th width="700px">Nama gejala</th>
-                        </tr>
+                            <tr>
+                                <th width="40px">No</th>
+                                <th width="100px">Kode Gejala</th>
+                                <th width="700px">Nama Gejala</th>
+                            </tr>
                         </thead>
                         <tbody>
                         <?php
-                            // Buat koneksi ke database
-                            $conn = new mysqli("localhost", "root", "", "db_pakar1");
-
-                            // Periksa koneksi
-                            if ($conn->connect_error) {
-                                die("Koneksi gagal: " . $conn->connect_error);
-                            }
-
-                            $no=1;
-<<<<<<< HEAD
-                            // $sql = "SELECT detail_basis_aturan.idaturan,detail_basis_aturan.idgejala,gejala.nmgejala 
-                            //         FROM detail_basis_aturan INNER JOIN gejala 
-                            //         ON detail_basis_aturan.idgejala=gejala.idgejala WHERE detail_basis_aturan.idaturan='$idaturan'";
-
-=======
-                            // $sql = "SELECT detail_basis_aturan.idaturan,detail_basis_aturan.idgejala,detail_basis_aturan.kdgejala,
-                            //                 gejala.kdgejala,gejala.nmgejala 
-                            //         FROM detail_basis_aturan INNER JOIN gejala 
-                            //         ON detail_basis_aturan.idgejala=gejala.idgejala WHERE detail_basis_aturan.idaturan='$idaturan'";
-
-                            // baru (salah diquery)
-                            // $sql = "SELECT detail_basis_aturan.idaturan,detail_basis_aturan.idgejala, gejala.nmgejala 
-                            // FROM detail_basis_aturan INNER JOIN gejala 
-                            // ON detail_basis_aturan.idgejala=gejala.idgejala 
-                            // WHERE detail_basis_aturan.idaturan='$idaturan'";
-
-                            // baru2
-                            $sql = "SELECT * FROM gejala where idgejala = 1";
->>>>>>> cac7806b54ee9fc7874a3792c8581ab96cd53bf7
-                            $result = $conn->query($sql);
-                            while($row = $result->fetch_assoc()) {
+                        // SQL untuk mendapatkan gejala-gejala
+                        $sql = "SELECT detail_basis_aturan.idaturan, detail_basis_aturan.idgejala, gejala.kdgejala, gejala.nmgejala 
+                                FROM detail_basis_aturan
+                                INNER JOIN gejala ON detail_basis_aturan.idgejala = gejala.idgejala 
+                                WHERE detail_basis_aturan.idaturan = ?";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->bind_param("i", $idaturan);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        
+                        $no = 1;
+                        while ($row = $result->fetch_assoc()) {
                         ?>
                             <tr>
                                 <td><?php echo $no++; ?></td>
@@ -90,15 +77,18 @@ $row = $result->fetch_assoc();
                                 <td><?php echo $row['nmgejala']; ?></td>
                             </tr>
                         <?php
-                            }
-                            $conn->close();
+                        }
                         ?>
                         </tbody>
-                        </table>
+                    </table>
 
-                        <a class="btn btn-danger" href="?page=aturan">Kembali</a>
-                    </div>
+                    <a class="btn btn-danger" href="?page=aturan">Kembali</a>
+                </div>
             </div>
         </form>
     </div>
 </div>
+<?php
+$stmt->close();
+$conn->close();
+?>

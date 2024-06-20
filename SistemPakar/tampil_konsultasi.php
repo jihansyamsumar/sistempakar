@@ -12,6 +12,7 @@ if(isset($_POST['Proses'])){
 
     // proses simpan konsultasi
     $sql = "INSERT INTO konsultasi VALUES (Null,'$tgl','$nmpasien','$usia')";
+    
     mysqli_query($conn,$sql);
 
     // mengambil idgejala, kdgejala
@@ -25,14 +26,25 @@ if(isset($_POST['Proses'])){
     $idkonsultasi = $row['idkonsultasi'];
 
     // proses simpan detail konsultasi
+    // $jumlah = count($idgejala);
+    // $i=0;
+    // while($i < $jumlah){
+    //     $idgejalane=$idgejala[$i];
+    //     $sql = "INSERT INTO detail_konsultasi VALUES ($idkonsultasi,'$idgejalane')";
+    //     mysqli_query($conn,$sql);
+    //     $i++;
+    // }
+
+    // baru
     $jumlah = count($idgejala);
-    $i=0;
-    while($i < $jumlah){
-        $idgejalane=$idgejala[$i];
+    $i = 0;
+    while ($i < $jumlah) {
+        $idgejalane = $idgejala[$i];
         $sql = "INSERT INTO detail_konsultasi VALUES ($idkonsultasi,'$idgejalane')";
-        mysqli_query($conn,$sql);
+        mysqli_query($conn, $sql);
         $i++;
     }
+
 
     // mengambil data dari tabel penyakit untuk di cek di basis aturan
     $sql = "SELECT*FROM penyakit";
