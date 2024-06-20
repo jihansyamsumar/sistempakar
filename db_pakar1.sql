@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Jun 2024 pada 03.47
+-- Waktu pembuatan: 20 Jun 2024 pada 10.06
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -42,8 +42,9 @@ INSERT INTO `basis_aturan` (`idaturan`, `idpenyakit`, `kdpenyakit`) VALUES
 (2, 2, ''),
 (3, 3, ''),
 (4, 4, ''),
-(9, 5, 'P5'),
-(17, 6, 'P6');
+(19, 7, 'P7'),
+(20, 5, 'P5'),
+(21, 6, 'P6');
 
 -- --------------------------------------------------------
 
@@ -108,7 +109,19 @@ INSERT INTO `detail_basis_aturan` (`idaturan`, `idgejala`, `kdgejala`) VALUES
 (0, 0, 'kdgejala'),
 (0, 0, 'kdgejala'),
 (0, 0, 'kdgejala'),
-(0, 0, 'kdgejala');
+(0, 0, 'kdgejala'),
+(0, 0, 'kdgejala'),
+(0, 0, 'kdgejala'),
+(0, 0, 'kdgejala'),
+(19, 1, ''),
+(19, 15, ''),
+(19, 14, ''),
+(20, 7, ''),
+(20, 10, ''),
+(20, 5, ''),
+(21, 9, ''),
+(21, 18, ''),
+(21, 19, '');
 
 -- --------------------------------------------------------
 
@@ -143,61 +156,7 @@ INSERT INTO `detail_konsultasi` (`idkonsultasi`, `idgejala`, `kdgejala`) VALUES
 (17, 14, ''),
 (18, 1, ''),
 (18, 15, ''),
-(18, 14, ''),
-(19, 1, ''),
-(19, 15, ''),
-(19, 14, ''),
-(19, 1, ''),
-(19, 15, ''),
-(19, 14, ''),
-(19, 1, ''),
-(19, 15, ''),
-(19, 14, ''),
-(19, 1, ''),
-(19, 15, ''),
-(19, 14, ''),
-(19, 1, ''),
-(19, 15, ''),
-(19, 14, ''),
-(19, 1, ''),
-(19, 15, ''),
-(19, 14, ''),
-(19, 1, ''),
-(19, 15, ''),
-(19, 14, ''),
-(19, 1, ''),
-(19, 15, ''),
-(19, 14, ''),
-(19, 1, ''),
-(19, 15, ''),
-(19, 14, ''),
-(20, 1, ''),
-(20, 15, ''),
-(20, 14, ''),
-(20, 1, ''),
-(20, 15, ''),
-(20, 14, ''),
-(20, 1, ''),
-(20, 15, ''),
-(20, 14, ''),
-(20, 1, ''),
-(20, 15, ''),
-(20, 14, ''),
-(20, 1, ''),
-(20, 15, ''),
-(20, 14, ''),
-(20, 1, ''),
-(20, 15, ''),
-(20, 14, ''),
-(20, 1, ''),
-(20, 15, ''),
-(20, 14, ''),
-(20, 1, ''),
-(20, 15, ''),
-(20, 14, ''),
-(20, 1, ''),
-(20, 15, ''),
-(20, 14, '');
+(18, 14, '');
 
 -- --------------------------------------------------------
 
@@ -290,22 +249,12 @@ INSERT INTO `konsultasi` (`idkonsultasi`, `tanggal`, `nama`, `usia`) VALUES
 (3, '2024-05-19', 'Kenzy', 0),
 (4, '2024-06-01', 'rani', 12),
 (5, '2024-06-01', 'Rana', 10),
-(6, '2024-06-02', 'qwert', 12),
-(7, '2024-06-12', 'asep', 10),
-(8, '2024-06-12', 'asep', 12),
 (9, '2024-06-12', 'Rana', 15),
 (10, '2024-06-12', 'Rana', 17),
 (11, '2024-06-12', 'Rana', 18),
-(12, '2024-06-19', 'Asep', 0),
-(13, '2024-06-19', 'Asep', 0),
-(14, '2024-06-19', 'Asep', 0),
 (15, '2024-06-19', 'Asep', 15),
 (16, '2024-06-19', 'Asep', 15),
-(17, '2024-06-19', 'Asep', 15),
-(18, '2024-06-19', 'Asep', 12),
-(19, '2024-06-19', 'Asep', 12),
-(20, '2024-06-19', 'Asep', 12),
-(21, '2024-06-19', 'Asep', 12);
+(17, '2024-06-19', 'Asep', 15);
 
 -- --------------------------------------------------------
 
@@ -344,7 +293,7 @@ INSERT INTO `penyakit` (`idpenyakit`, `kdpenyakit`, `nmpenyakit`, `keterangan`, 
 CREATE TABLE `users` (
   `idusers` int(11) NOT NULL,
   `username` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `pass` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pass` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `role` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -356,9 +305,9 @@ INSERT INTO `users` (`idusers`, `username`, `pass`, `role`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin'),
 (2, 'dokter', 'd22af4180eee4bd95072eb90f94930e5', 'Dokter'),
 (3, 'Rana', 'a93930b46b7788f8288e71b7944063f9', 'Pasien'),
-(4, 'rani', 'b9f81618db3b0d7a8be8fd904cca8b6a', 'Pasien'),
-(5, 'Riri', '', NULL),
-(18, 'Asep', '081e127fe622361157d47abcf49ffce5', 'Pasien');
+(4, 'Rani', 'b9f81618db3b0d7a8be8fd904cca8b6a', 'Pasien'),
+(18, 'Asep', '081e127fe622361157d47abcf49ffce5', 'Pasien'),
+(19, 'Wawan', '79c2b0dd4079d316545375bfe3789078', 'Pasien');
 
 --
 -- Indexes for dumped tables
@@ -402,7 +351,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `basis_aturan`
 --
 ALTER TABLE `basis_aturan`
-  MODIFY `idaturan` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idaturan` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `gejala`
@@ -414,7 +363,7 @@ ALTER TABLE `gejala`
 -- AUTO_INCREMENT untuk tabel `konsultasi`
 --
 ALTER TABLE `konsultasi`
-  MODIFY `idkonsultasi` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `idkonsultasi` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT untuk tabel `penyakit`
@@ -426,7 +375,7 @@ ALTER TABLE `penyakit`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `idusers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idusers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
