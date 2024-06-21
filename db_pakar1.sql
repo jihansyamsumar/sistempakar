@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Jun 2024 pada 10.06
+-- Waktu pembuatan: 21 Jun 2024 pada 08.50
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -41,10 +41,7 @@ INSERT INTO `basis_aturan` (`idaturan`, `idpenyakit`, `kdpenyakit`) VALUES
 (1, 1, ''),
 (2, 2, ''),
 (3, 3, ''),
-(4, 4, ''),
-(19, 7, 'P7'),
-(20, 5, 'P5'),
-(21, 6, 'P6');
+(4, 4, '');
 
 -- --------------------------------------------------------
 
@@ -156,7 +153,20 @@ INSERT INTO `detail_konsultasi` (`idkonsultasi`, `idgejala`, `kdgejala`) VALUES
 (17, 14, ''),
 (18, 1, ''),
 (18, 15, ''),
-(18, 14, '');
+(18, 14, ''),
+(29, 16, ''),
+(29, 11, ''),
+(29, 2, ''),
+(30, 16, ''),
+(30, 11, ''),
+(30, 2, ''),
+(31, 16, ''),
+(31, 11, ''),
+(31, 2, ''),
+(32, 1, ''),
+(32, 15, ''),
+(32, 14, ''),
+(32, 3, '');
 
 -- --------------------------------------------------------
 
@@ -185,7 +195,16 @@ INSERT INTO `detail_penyakit` (`idkonsultasi`, `kdpenyakit`, `idpenyakit`, `pers
 (3, '', 1, 22),
 (3, '', 2, 50),
 (3, '', 3, 22),
-(3, '', 4, 50);
+(3, '', 4, 50),
+(31, '', 1, 22),
+(31, '', 2, 25),
+(31, '', 3, 11),
+(31, '', 4, 17),
+(32, '', 1, 22),
+(32, '', 2, 12),
+(32, '', 3, 22),
+(32, '', 4, 17),
+(32, '', 7, 100);
 
 -- --------------------------------------------------------
 
@@ -245,16 +264,8 @@ CREATE TABLE `konsultasi` (
 
 INSERT INTO `konsultasi` (`idkonsultasi`, `tanggal`, `nama`, `usia`) VALUES
 (1, '2024-05-19', 'Rana', 0),
-(2, '2024-05-19', 'Rana', 0),
 (3, '2024-05-19', 'Kenzy', 0),
-(4, '2024-06-01', 'rani', 12),
-(5, '2024-06-01', 'Rana', 10),
-(9, '2024-06-12', 'Rana', 15),
-(10, '2024-06-12', 'Rana', 17),
-(11, '2024-06-12', 'Rana', 18),
-(15, '2024-06-19', 'Asep', 15),
-(16, '2024-06-19', 'Asep', 15),
-(17, '2024-06-19', 'Asep', 15);
+(32, '2024-06-21', 'Wawan', 17);
 
 -- --------------------------------------------------------
 
@@ -279,10 +290,7 @@ INSERT INTO `penyakit` (`idpenyakit`, `kdpenyakit`, `nmpenyakit`, `keterangan`, 
 (2, 'P2', 'Pneumonia Atipikal', 'Pneumonia yang disebabkan oleh mikroorganisme yang tidak dapat diidentifikasi dengan teknik diagnostik standar pneumonia pada umumnya dan tidak menunjukkan respon terhadap antibiotik b-laktam.', 'Meresepkan obat antiinflamasi nonsteroid (OAINS) untuk meredakan demam dan obat antibiotik jika pneumonia atipikal disebabkan oleh bakteri.'),
 (3, 'P3', 'Pneumonia Bakterial', 'Penyakit pada paru-paru yang disebabkan oleh infeksi bakteri. Jenis bakteri yang paling umum adalah Streptococcus pneumoniae.', 'Meresepkan obat antibiotik untuk mengobati pneumonia yang terjadi akibat infeksi bakteri.'),
 (4, 'P4', 'Pneumonia Viral', 'Jenis pneumonia pada anak yang disebabkan oleh infeksi virus, seperti adenovirus, respiratory syncytial virus (RSV), virus parainfluenza, serta virus influenza.', 'Minum obat pereda rasa sakit, dan jangan mengonsumsi obat batuk.'),
-(5, 'P5', 'testing5', 'testing5', 'testing5'),
-(6, 'P6', 'test6', 'test6', 'test6'),
-(7, 'P7', 'test7', 'test7', 'test7'),
-(8, 'P8', 'test8', 'test8', 'test8');
+(5, 'P5', 'testing5', 'testing5', 'testing5');
 
 -- --------------------------------------------------------
 
@@ -303,7 +311,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`idusers`, `username`, `pass`, `role`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin'),
-(2, 'dokter', 'd22af4180eee4bd95072eb90f94930e5', 'Dokter'),
+(2, 'Dokter', 'd22af4180eee4bd95072eb90f94930e5', 'Dokter'),
 (3, 'Rana', 'a93930b46b7788f8288e71b7944063f9', 'Pasien'),
 (4, 'Rani', 'b9f81618db3b0d7a8be8fd904cca8b6a', 'Pasien'),
 (18, 'Asep', '081e127fe622361157d47abcf49ffce5', 'Pasien'),
@@ -363,7 +371,7 @@ ALTER TABLE `gejala`
 -- AUTO_INCREMENT untuk tabel `konsultasi`
 --
 ALTER TABLE `konsultasi`
-  MODIFY `idkonsultasi` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `idkonsultasi` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT untuk tabel `penyakit`

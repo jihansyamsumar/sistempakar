@@ -5,94 +5,87 @@ date_default_timezone_set("Asia/Jakarta");
 
 if(isset($_POST['Proses'])){
 
-    // mengambil data dari form
-    $nmpasien=$_POST['nmpasien'];
-    $tgl=date("Y/m/d");
-    $usia=$_POST['usia'];
+    // Mengambil data dari form
+    $nmpasien = $_POST['nmpasien'];
+    $tgl = date("Y/m/d");
+    $usia = $_POST['usia'];
 
-    // proses simpan konsultasi
-    $sql = "INSERT INTO konsultasi VALUES (Null,'$tgl','$nmpasien','$usia')";
+    // Proses simpan konsultasi dengan prepared statement
+    $stmt = $conn->prepare("INSERT INTO konsultasi (tanggal, nama, usia) VALUES (?, ?, ?)");
+    $stmt->bind_param("ssi", $tgl, $nmpasien, $usia);
+    $stmt->execute();
     
-    mysqli_query($conn,$sql);
+    // Mengambil ID konsultasi terakhir
+    $idkonsultasi = $conn->insert_id;
 
-    // mengambil idgejala, kdgejala
-    $idgejala=$_POST['idgejala'];
-    $kdgejala=$_POST['kdgejala'];
+    // Mengambil idgejala
+    $idgejala = $_POST['idgejala'];
 
-    // proses mengambil data konsultasi
-    $sql = "SELECT * FROM konsultasi ORDER BY idkonsultasi DESC";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
-    $idkonsultasi = $row['idkonsultasi'];
-
-    // proses simpan detail konsultasi
-    $jumlah = count($idgejala);
-    $i=0;
-    while($i < $jumlah){
-        $idgejalane=$idgejala[$i];
-        $sql = "INSERT INTO detail_konsultasi VALUES ($idkonsultasi,'$idgejalane')";
-        mysqli_query($conn,$sql);
-        $i++;
+    // Proses simpan detail konsultasi dengan prepared statement
+    $stmt = $conn->prepare("INSERT INTO detail_konsultasi (idkonsultasi, idgejala) VALUES (?, ?)");
+    foreach ($idgejala as $idgejalane) {
+        $stmt->bind_param("ii", $idkonsultasi, $idgejalane);
+        $stmt->execute();
     }
 
-    // mengambil data dari tabel penyakit untuk di cek di basis aturan
-    $sql = "SELECT*FROM penyakit";
+    // Mengambil data dari tabel penyakit untuk dicek di basis aturan
+    $sql = "SELECT * FROM penyakit";
     $result = $conn->query($sql);
     while($row = $result->fetch_assoc()) {
 
         $idpenyakit = $row['idpenyakit'];
-        $jyes=0;
+        $jyes = 0;
 
-        // mencari jumlah gejala di basis aturan berdasarkan penyakit
-        $sql2 = "SELECT COUNT(idpenyakit) AS jml_gejala 
-                    FROM basis_aturan INNER JOIN detail_basis_aturan
-                    ON basis_aturan.idaturan=detail_basis_aturan.idaturan
-                    WHERE idpenyakit='$idpenyakit'";
-        $result2 = $conn->query($sql2);
+        // Mencari jumlah gejala di basis aturan berdasarkan penyakit
+        $stmt2 = $conn->prepare("SELECT COUNT(idpenyakit) AS jml_gejala FROM basis_aturan INNER JOIN detail_basis_aturan ON basis_aturan.idaturan = detail_basis_aturan.idaturan WHERE idpenyakit = ?");
+        $stmt2->bind_param("i", $idpenyakit);
+        $stmt2->execute();
+        $result2 = $stmt2->get_result();
         $row2 = $result2->fetch_assoc();
         $jml_gejala = $row2['jml_gejala'];
 
-        // mencari gejala pada basis aturan
-        $sql3 = "SELECT idpenyakit, idgejala, kdgejala
-                    FROM basis_aturan INNER JOIN detail_basis_aturan
-                    ON basis_aturan.idaturan=detail_basis_aturan.idaturan
-                    WHERE idpenyakit='$idpenyakit'";
-        $result3 = $conn->query($sql3);
+        // Mencari gejala pada basis aturan
+        $stmt3 = $conn->prepare("SELECT idgejala FROM basis_aturan INNER JOIN detail_basis_aturan ON basis_aturan.idaturan = detail_basis_aturan.idaturan WHERE idpenyakit = ?");
+        $stmt3->bind_param("i", $idpenyakit);
+        $stmt3->execute();
+        $result3 = $stmt3->get_result();
         while($row3 = $result3->fetch_assoc()) {
 
-            $idgejalane=$row3['idgejala'];
+            $idgejalane = $row3['idgejala'];
 
-            // membandingkan apakah yang dipilih pada konsultasi sesuai
-            $sql4 = "SELECT idgejala FROM detail_konsultasi
-                        WHERE idkonsultasi='$idkonsultasi' AND idgejala='$idgejalane'";
-            $result4 = $conn->query($sql4);
+            // Membandingkan apakah yang dipilih pada konsultasi sesuai
+            $stmt4 = $conn->prepare("SELECT idgejala FROM detail_konsultasi WHERE idkonsultasi = ? AND idgejala = ?");
+            $stmt4->bind_param("ii", $idkonsultasi, $idgejalane);
+            $stmt4->execute();
+            $result4 = $stmt4->get_result();
             if ($result4->num_rows > 0) {
-                $jyes+=1;
+                $jyes += 1;
             }
         }
 
-        // mencari persentase
+        // Mencari persentase
         if($jml_gejala > 0){
-            $peluang = round(($jyes/$jml_gejala)*100,2);
-        } else{
+            $peluang = round(($jyes / $jml_gejala) * 100, 2);
+        } else {
             $peluang = 0;
         }
 
-        // simpan data detail penyakit
+        // Simpan data detail penyakit
         if($peluang > 0){
-            $sql = "INSERT INTO detail_penyakit VALUES ('$idkonsultasi','$idpenyakit','$peluang')";
-            mysqli_query($conn,$sql);
+            $stmt5 = $conn->prepare("INSERT INTO detail_penyakit (idkonsultasi, idpenyakit, persentase) VALUES (?, ?, ?)");
+            $stmt5->bind_param("iid", $idkonsultasi, $idpenyakit, $peluang);
+            $stmt5->execute();
         }
-
-        header("Location:?page=konsultasi&action=hasil&idkonsultasi=$idkonsultasi");
     }
-}
 
+    header("Location:?page=konsultasi&action=hasil&idkonsultasi=$idkonsultasi");
+    exit;
+}
 ?>
 
 <style>
-  .card{
-    margin-top:30px;
+  .card {
+    margin-top: 30px;
   }
 </style>
 
@@ -100,7 +93,6 @@ if(isset($_POST['Proses'])){
     <div class="col-sm-12">
         <form action="" method="POST" name="Form" onsubmit="return validasiForm()">
             <div class="card border-dark">
-                <!-- <div class="card"> -->
                 <div class="card-header bg-primary text-white border-dark"><strong>Konsultasi Penyakit</strong></div>
                 <div class="card-body">
                     <div class="form-group">
@@ -127,27 +119,21 @@ if(isset($_POST['Proses'])){
                             <tbody>
                                 <?php
                                     // Buat koneksi ke database
-                                    $conn = new mysqli("localhost", "root", "", "db_pakar1");
-
-                                    // Periksa koneksi
-                                    if ($conn->connect_error) {
-                                        die("Koneksi gagal: " . $conn->connect_error);
-                                    }
-
-                                    $no=1;
-                                    $sql = "SELECT * FROM gejala ORDER BY kdgejala,nmgejala ASC";
+                                    // Koneksi sudah dibuat sebelumnya, jadi tidak perlu membuat ulang di sini
+                                    $no = 1;
+                                    $sql = "SELECT * FROM gejala ORDER BY kdgejala, nmgejala ASC";
                                     $result = $conn->query($sql);
                                     while($row = $result->fetch_assoc()) {
                                 ?>
                                 <tr>
-                                    <td align="center"><input type="checkbox" class="check-item" name="<?php echo 'idgejala[]'; ?>" value="<?php echo $row['idgejala']; ?>"></td>
+                                    <td align="center"><input type="checkbox" class="check-item" name="idgejala[]" value="<?php echo $row['idgejala']; ?>"></td>
                                     <td><?php echo $no++; ?></td>
                                     <td><?php echo $row['kdgejala']; ?></td>
                                     <td><?php echo $row['nmgejala']; ?></td>
                                 </tr>
                                 <?php
                                     }
-                                    $conn->close();
+                                    // Koneksi tidak perlu ditutup di sini, karena sudah digunakan di tempat lain
                                 ?>
                             </tbody>
                         </table>
@@ -161,27 +147,24 @@ if(isset($_POST['Proses'])){
 </div>
 
 <script type="text/javascript">
-    function validasiForm()
-    {
+    function validasiForm() {
         // validasi gejala yang belum dipilih
-        var checkbox=document.getElementsByName('<?php echo 'idgejala[]'; ?>');
+        var checkbox = document.getElementsByName('idgejala[]');
+        var isChecked = false;
 
-        var isChecked=false;
-
-        for(var i=0;i<checkbox.length;i++){
-            if(checkbox[i].checked){
+        for (var i = 0; i < checkbox.length; i++) {
+            if (checkbox[i].checked) {
                 isChecked = true;
                 break;
             }
         }
 
         // jika belum ada yang di check
-        if(!isChecked){
+        if (!isChecked) {
             alert('Pilih Setidaknya Satu Gejala !!');
             return false;
         }
 
         return true;
     }
-
 </script>
